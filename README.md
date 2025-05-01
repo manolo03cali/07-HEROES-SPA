@@ -11,6 +11,8 @@ Currently, two official plugins are available:
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
+Prueba la aplicación y la protección de rutas usando el nuevo estandar de React-router-dom 7
+[text](https://wondrous-rolypoly-5113c0.netlify.app/)
 Aplicación web desarrollada con React, que permite a los usuarios explorar y consultar información detallada de superhéroes. Incluye funcionalidades como:
 
 Navegación por rutas protegidas usando React Router.
