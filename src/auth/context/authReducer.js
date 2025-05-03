@@ -19,7 +19,7 @@ export const authReducer = (state = {}, action) => {
     case types.logout:
       return {
         logged: false, // Se marca que el usuario ya no está autenticado
-        user: null,
+        // user: null,
       };
 
     // Si la acción no coincide con ningún caso anterior, se devuelve el estado actual sin modificar

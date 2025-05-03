@@ -1,6 +1,6 @@
 import { useContext } from "react"; // Importa el hook `useContext` de React para acceder al contexto de autenticación.
 import { useNavigate } from "react-router-dom"; // Importa el hook `useNavigate` de react-router-dom para permitir redirecciones dentro de la app.
-import { AuthContext } from "../context/AuthContext"; // Importa el contexto `AuthContext` que contiene el estado y las funciones de autenticación.
+import { AuthContext } from "../../auth"; // Importa el contexto `AuthContext` que contiene el estado y las funciones de autenticación.
 
 export const LoginPage = () => {
   const { login } = useContext(AuthContext); // Usa `useContext` para obtener la función `login` del contexto de autenticación.

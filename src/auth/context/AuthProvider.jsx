@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(authReducer, {}, init);
 
   // Función para manejar el login de un usuario. Se puede personalizar para conectarse a un backend en el futuro.
-  const login = async (name = "") => {
+  const login = (name = "") => {
     const user = { id: "ABC", name }; // Se simula un usuario autenticado
     const action = {
       type: types.login, // Acción de tipo 'login'

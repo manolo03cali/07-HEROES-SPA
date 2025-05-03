@@ -4,8 +4,14 @@ import { LoginPage } from "../auth";
 
 export const publicRoutes = [
   {
+    path: "/",
     element: <PublicLayout />,
 
-    children: [{ path: "login", element: <LoginPage /> }],
+    children: [
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
+    ],
   },
 ];
