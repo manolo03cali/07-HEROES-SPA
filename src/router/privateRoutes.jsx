@@ -8,7 +8,7 @@ export const privateRoutes = [
     children: [
       { path: "marvel", element: <MarvelPage /> },
       { path: "dc", element: <DCPage /> },
-      { path: "/", element: <DCPage /> },
+      { path: "/", element: <MarvelPage /> },
       { path: "search", element: <SearchPage /> },
       { path: "hero/:id", element: <HeroPage /> },
       { path: "*", element: <ErrorPage /> },

@@ -1,29 +1,11 @@
-// import { createBrowserRouter } from "react-router-dom";
-// import { PublicLayout, PrivateLayout } from "../ui";
-// import { MarvelPage, DCPage, ErrorPage } from "../heroes";
-// import { LoginPage } from "../auth";
-
-// // Definición de rutas
-// export const AppRouter = createBrowserRouter([
-//   {
-//     element: <PublicLayout />,
-//     children: [
-//       { path: "/", element: <MarvelPage /> },
-//       { path: "marvel", element: <MarvelPage /> },
-//       { path: "dc", element: <DCPage /> },
-//     ],
-//   },
-//   {
-//     element: <PrivateLayout />,
-//     children: [
-//       { path: "login", element: <LoginPage /> },
-//       //  { path: "/profile", element: <ProfilePage /> },
-//     ],
-//   },
-//   { path: "*", element: <ErrorPage /> }, // 404
-// ]);
-//la implementación comentada sirve si no hay una estructura de rutas muy grande
+// Importa la función `createBrowserRouter` desde React Router,
+// que se usa para crear un router basado en el historial del navegador.
 import { createBrowserRouter } from "react-router-dom";
+
+// Importa las rutas de la aplicación, definidas en otro archivo (probablemente un array de objetos de rutas).
 import { appRoutes } from "./";
 
+// Crea el enrutador principal de la aplicación usando las rutas importadas.
+// `createBrowserRouter` construye un enrutador que entiende las rutas definidas en `appRoutes`
+// y se encarga de mostrar los componentes correspondientes según la URL.
 export const AppRouter = createBrowserRouter(appRoutes);

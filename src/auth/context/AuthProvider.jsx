@@ -1,5 +1,5 @@
 // Se importa el hook `useReducer` de React, útil para manejar estados complejos con múltiples acciones posibles.
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 
 // Se importa el contexto de autenticación que se utilizará para compartir datos entre componentes sin prop drilling.
 import { AuthContext } from "./AuthContext";
@@ -16,7 +16,7 @@ const init = () => {
   const user = JSON.parse(localStorage.getItem("user")); // Se intenta obtener el usuario almacenado en localStorage
   return {
     logged: !!user, // Si existe un usuario, `logged` será `true`; si no, será `false`
-    user: user, // Se almacena el objeto `user` (o `null` si no hay ninguno)
+    user: user || null, // Se almacena el objeto `user` (o `null` si no hay ninguno)
   };
 };
 
