@@ -14,13 +14,11 @@ import { AuthContext } from "../../auth";
 // Importa los layouts (diseños) de la aplicación:
 // - `PublicLayout`: contenedor para rutas públicas (como login)
 // - `PrivateLayout`: contenedor para rutas privadas (requieren autenticación)
-import { PublicLayout, PrivateLayout } from "../../ui";
+import { PublicLayout } from "../../ui";
 
 // Importa componentes de páginas:
 // - `LoginPage`: página de inicio de sesión (ruta pública)
 import { LoginPage } from "../../auth";
-// - Páginas de heroes (rutas privadas)
-import { DCPage, MarvelPage, ErrorPage } from "../../heroes";
 
 /**
  * Función helper para renderizar componentes con autenticación y rutas configuradas
@@ -28,7 +26,7 @@ import { DCPage, MarvelPage, ErrorPage } from "../../heroes";
  * @param {string} [initialRoute="/login"] - Ruta inicial para el MemoryRouter
  * @returns {Object} Retorna el resultado de render() con la aplicación configurada
  */
-export const renderIntegraciónRoutes = (authState, initialRoute = "/login") => {
+export const renderWithPublicRoutes = (authState, initialRoute = "/login") => {
   return render(
     // Provee el contexto de autenticación con el estado especificado
     <AuthContext.Provider value={authState}>
@@ -40,16 +38,6 @@ export const renderIntegraciónRoutes = (authState, initialRoute = "/login") => 
           <Route path="/" element={<PublicLayout />}>
             {/* Ruta específica para login */}
             <Route path="login" element={<LoginPage />} />
-          </Route>
-
-          {/* Rutas privadas (requieren autenticación) */}
-          <Route path="/" element={<PrivateLayout />}>
-            {/* Ruta para página de héroes de Marvel */}
-            <Route path="marvel" element={<MarvelPage />} />
-            {/* Ruta para página de héroes de DC */}
-            <Route path="dc" element={<DCPage />} />
-            {/* Ruta comodín para manejar páginas no encontradas (404) */}
-            <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
       </MemoryRouter>

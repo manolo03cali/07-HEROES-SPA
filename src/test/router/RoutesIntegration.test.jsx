@@ -1,5 +1,5 @@
 import { screen, waitFor } from "@testing-library/react";
-import { renderIntegraciónRoutes } from "./renderIntegración";
+import { renderWithAllRoutes } from "./renderWithAllRoutes";
 import "@testing-library/jest-dom";
 
 describe("Pruebas de Integración - Flujo completo de rutas", () => {
@@ -13,7 +13,7 @@ describe("Pruebas de Integración - Flujo completo de rutas", () => {
 
   test("Usuario autenticado es redirigido desde /login a su última ruta visitada (/marvel)", async () => {
     localStorage.setItem("lastPath", "/marvel");
-    renderIntegraciónRoutes(authState, "/login");
+    renderWithAllRoutes(authState, "/login");
 
     await waitFor(() => {
       expect(
@@ -25,7 +25,7 @@ describe("Pruebas de Integración - Flujo completo de rutas", () => {
 
   test("Usuario autenticado es redirigido a /marvel (ruta por defecto) cuando no hay última ruta guardada", async () => {
     // No establecer lastPath para probar el comportamiento por defecto
-    renderIntegraciónRoutes(authState, "/login");
+    renderWithAllRoutes(authState, "/login");
 
     await waitFor(() => {
       expect(
@@ -36,28 +36,28 @@ describe("Pruebas de Integración - Flujo completo de rutas", () => {
   });
 
   test("Usuario NO autenticado puede acceder a /login y ve el formulario", async () => {
-    renderIntegraciónRoutes(
+    renderWithAllRoutes(
       {
         logged: false,
       },
       "/login"
     );
-
+    // screen.debug();
     expect(
       await screen.findByRole("heading", { name: /login/i })
     ).toBeInTheDocument();
   });
 
   test("Muestra ErrorPage (404) para rutas no existentes cuando el usuario está autenticado", async () => {
-    renderIntegraciónRoutes(authState, "/ruta-inexistente");
+    renderWithAllRoutes(authState, "/ruta-inexistente");
 
     expect(await screen.findByText(/404/i)).toBeInTheDocument();
   });
 
   test("Redirige correctamente a /dc cuando es la última ruta visitada", async () => {
     localStorage.setItem("lastPath", "/dc");
-    renderIntegraciónRoutes(authState, "/login");
-
+    renderWithAllRoutes(authState, "/login");
+    // screen.debug();
     await waitFor(() => {
       expect(
         screen.getByRole("heading", { name: /DC Comics/i })

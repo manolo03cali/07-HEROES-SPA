@@ -25,7 +25,10 @@ import { DCPage, MarvelPage, ErrorPage } from "../../heroes";
  * @param {string} [initialRoute="/login"] - Ruta inicial para el MemoryRouter
  * @returns {Object} Retorna el resultado de render() con la aplicación configurada
  */
-export const renderPrivateRoutes = (authState, initialRoute = "/marvel") => {
+export const renderWithPrivateRoutes = (
+  authState,
+  initialRoute = "/marvel"
+) => {
   return render(
     // Provee el contexto de autenticación con el estado especificado
     <AuthContext.Provider value={authState}>

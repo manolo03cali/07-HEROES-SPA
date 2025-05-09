@@ -1,8 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import { renderPublicRoutes } from "./renderPublicRoutes";
+import { renderWithPublicRoutes } from "./renderWithPublicRoutes";
 import "@testing-library/jest-dom";
-import { useNavigate } from "react-router-dom";
 
 describe("Pruebas en <PublicLayout /> - Rutas Públicas", () => {
   const unauthenticatedState = {
@@ -14,7 +13,7 @@ describe("Pruebas en <PublicLayout /> - Rutas Públicas", () => {
     localStorage.clear();
   });
   test("Debe renderizar LoginPage en /login cuando el usuario NO está autenticado", async () => {
-    renderPublicRoutes(unauthenticatedState, "/login");
+    renderWithPublicRoutes(unauthenticatedState, "/login");
 
     await waitFor(() => {
       expect(
@@ -23,7 +22,7 @@ describe("Pruebas en <PublicLayout /> - Rutas Públicas", () => {
     });
   });
   test("No debe mostrar contenido privado en rutas públicas", async () => {
-    renderPublicRoutes(unauthenticatedState, "/login");
+    renderWithPublicRoutes(unauthenticatedState, "/login");
 
     expect(screen.queryByText(/Marvel Comics/i)).toBeNull();
     expect(screen.queryByText(/DC Comics/i)).toBeNull();
@@ -33,7 +32,7 @@ describe("Pruebas en <PublicLayout /> - Rutas Públicas", () => {
   });
 
   test("Debe permitir acceso a rutas públicas sin autenticación", async () => {
-    renderPublicRoutes({ logged: false }, "/login");
+    renderWithPublicRoutes({ logged: false }, "/login");
 
     expect(
       await screen.findByRole("heading", { name: /login/i })

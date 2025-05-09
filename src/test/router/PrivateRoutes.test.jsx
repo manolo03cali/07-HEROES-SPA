@@ -1,6 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import { renderPrivateRoutes } from "./renderPrivateRoutes";
+import { renderWithPrivateRoutes } from "./renderWithPrivateRoutes";
 import "@testing-library/jest-dom";
 
 describe("Pruebas en <PrivateLayout /> - Rutas Privadas", () => {
@@ -14,7 +14,7 @@ describe("Pruebas en <PrivateLayout /> - Rutas Privadas", () => {
   });
 
   test("Renderiza MarvelPage correctamente para usuario autenticado", async () => {
-    renderPrivateRoutes(authState, "/marvel");
+    renderWithPrivateRoutes(authState, "/marvel");
 
     await waitFor(() => {
       expect(
@@ -23,9 +23,8 @@ describe("Pruebas en <PrivateLayout /> - Rutas Privadas", () => {
     });
     expect(screen.queryByText(/login/i)).toBeNull();
   });
-
   test("Renderiza DCPage correctamente para usuario autenticado", async () => {
-    renderPrivateRoutes(authState, "/dc");
+    renderWithPrivateRoutes(authState, "/dc");
 
     await waitFor(() => {
       expect(
@@ -34,15 +33,14 @@ describe("Pruebas en <PrivateLayout /> - Rutas Privadas", () => {
     });
     expect(screen.queryByText(/login/i)).toBeNull();
   });
-
   test("Muestra ErrorPage para rutas no existentes", async () => {
-    renderPrivateRoutes(authState, "/ruta-inexistente");
+    renderWithPrivateRoutes(authState, "/ruta-inexistente");
 
     expect(await screen.findByText(/404/i)).toBeInTheDocument();
   });
 
   test("No muestra contenido privado si no está autenticado", async () => {
-    renderPrivateRoutes({ logged: false }, "/marvel");
+    renderWithPrivateRoutes({ logged: false }, "/marvel");
 
     await waitFor(() => {
       // Verifica que no se muestra el contenido de Marvel
