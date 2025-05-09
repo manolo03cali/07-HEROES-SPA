@@ -6,12 +6,12 @@ import { getHeroyById } from "../../../heroes/helpers"; // Helper para obtener d
 import "@testing-library/jest-dom"; // Extiende Jest con matchers adicionales para el DOM
 
 // Mock de la función useNavigate para simular y espiar la navegación
-const mockNavigate = jest.fn();
+const mockUseNavigate = jest.fn();
 
 // Configuración del mock para react-router-dom
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"), // Mantiene todas las funcionalidades reales
-  useNavigate: () => mockNavigate, // Reemplaza useNavigate con nuestro mock
+  useNavigate: () => mockUseNavigate, // Reemplaza useNavigate con nuestro mock
   useParams: jest.fn(), // Mock de useParams
 }));
 
@@ -107,6 +107,8 @@ describe("Pruebas en <HeroPage />", () => {
       : "/dc";
 
     // Verifica que navigate fue llamado con los parámetros correctos
-    expect(mockNavigate).toHaveBeenCalledWith(expectedRoute, { replace: true });
+    expect(mockUseNavigate).toHaveBeenCalledWith(expectedRoute, {
+      replace: true,
+    });
   });
 });
