@@ -1,6 +1,6 @@
 // module.exports = {
 //   testEnvironment: "jest-environment-jsdom",
-//   setupFiles: ["./jest.setup.js"],
+//   testEnvironment: ["./jest.setup.js"],
 // };
 module.exports = {
   testEnvironment: "jest-environment-jsdom",
